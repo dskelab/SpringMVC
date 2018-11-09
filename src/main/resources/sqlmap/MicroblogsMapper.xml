@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.dao.MicroblogsMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.entity.Microblogs" >
+    <id column="mb_id" property="mbId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mb_text" property="mbText" jdbcType="VARCHAR" />
+    <result column="mb_picture" property="mbPicture" jdbcType="VARCHAR" />
+    <result column="mb_video" property="mbVideo" jdbcType="VARCHAR" />
+    <result column="mb_time" property="mbTime" jdbcType="TIMESTAMP" />
+    <result column="like_times" property="likeTimes" jdbcType="INTEGER" />
+    <result column="comment_times" property="commentTimes" jdbcType="INTEGER" />
+    <result column="forward_times" property="forwardTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mb_id, user_id, mb_text, mb_picture, mb_video, mb_time, like_times, comment_times,
+    forward_times
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from microblogs
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from microblogs
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.entity.Microblogs" >
+    insert into microblogs (mb_id, user_id, mb_text,
+      mb_picture, mb_video, mb_time,
+      like_times, comment_times, forward_times
+      )
+    values (#{mbId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{mbText,jdbcType=VARCHAR},
+      #{mbPicture,jdbcType=VARCHAR}, #{mbVideo,jdbcType=VARCHAR}, #{mbTime,jdbcType=TIMESTAMP},
+      #{likeTimes,jdbcType=INTEGER}, #{commentTimes,jdbcType=INTEGER}, #{forwardTimes,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.entity.Microblogs" >
+    update microblogs
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mbText != null" >
+        mb_text = #{mbText,jdbcType=VARCHAR},
+      </if>
+      <if test="mbPicture != null" >
+        mb_picture = #{mbPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="mbVideo != null" >
+        mb_video = #{mbVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="mbTime != null" >
+        mb_time = #{mbTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="likeTimes != null" >
+        like_times = #{likeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="commentTimes != null" >
+        comment_times = #{commentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="forwardTimes != null" >
+        forward_times = #{forwardTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.entity.Microblogs" >
+    update microblogs
+    set user_id = #{userId,jdbcType=INTEGER},
+      mb_text = #{mbText,jdbcType=VARCHAR},
+      mb_picture = #{mbPicture,jdbcType=VARCHAR},
+      mb_video = #{mbVideo,jdbcType=VARCHAR},
+      mb_time = #{mbTime,jdbcType=TIMESTAMP},
+      like_times = #{likeTimes,jdbcType=INTEGER},
+      comment_times = #{commentTimes,jdbcType=INTEGER},
+      forward_times = #{forwardTimes,jdbcType=INTEGER}
+    where mb_id = #{mbId,jdbcType=INTEGER}
+  </update>
+</mapper>

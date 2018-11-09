@@ -33,7 +33,10 @@
                              targetProject="${mapperProject}" type="XMLMAPPER" />
 
         <!-- 如果需要通配所有表 直接用sql的通配符    %即可 ，如果要配置多个配，把底下复制，修改表名即可-->
-        <table schema="" tableName="test_table" enableCountByExample="false"
+        <table schema="" tableName="users" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="" tableName="microblogs" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"/>
 

@@ -20,7 +20,7 @@
 <div class="htmleaf-container">
 	<div id="wrapper" class="login-page">
 	  <div id="login_form" class="form">
-		<form class="register-form" action="/register" method="post" onsubmit="return check_register()">
+		<form class="register-form" action="/" method="get" onsubmit="return check_register()">
 		  <input type="text" placeholder="用户名" id="r_user_name"/>
 		  <input type="password" placeholder="密码" id="r_password" />
 		  <input type="text" placeholder="电子邮件" id="r_emial"/>
